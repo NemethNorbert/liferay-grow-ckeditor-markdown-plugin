@@ -12,7 +12,6 @@ var turndownService;
                 return;
 
             var markdown = CKEDITOR.plugins.markdown,
-                rootPath = this.path,
                 defaultConfig = {
                     mode: 'gfm',
                     lineNumbers: true,
@@ -64,20 +63,20 @@ var turndownService;
                 }
 
                 if (typeof (CodeMirror) == 'undefined' || typeof (CodeMirror.modes.gfm) == 'undefined') {
-                    CKEDITOR.document.appendStyleSheet(rootPath + 'css/codemirror.min.css');
+                    CKEDITOR.document.appendStyleSheet('https://unpkg.com/grow-markdown-resource/css/codemirror.min.css');
                 
                     if (config.theme.length && config.theme != 'default') {
-                        CKEDITOR.document.appendStyleSheet(rootPath + 'theme/' + config.theme + '.css');
+                        CKEDITOR.document.appendStyleSheet('https://unpkg.com/grow-markdown-resource/theme/' + config.theme + '.css');
                     }
 
-                    CKEDITOR.scriptLoader.load(rootPath + 'js/codemirror-gfm-min.js', function() {
+                    CKEDITOR.scriptLoader.load('https://unpkg.com/grow-markdown-resource/js/codemirror-gfm-min.js', function() {
                         loadCodeMirror(editor, editable);
                     });
                 } else {
                     loadCodeMirror(editor, editable);
                 }
                 if (typeof(marked) == 'undefined') {
-                    CKEDITOR.scriptLoader.load(rootPath + 'js/marked.js');
+                    CKEDITOR.scriptLoader.load('https://unpkg.com/grow-markdown-resource/js/marked.js');
                 }
                 // Having to make <textarea> fixed sized to conquer the following bugs:
                 // 1. The textarea height/width='100%' doesn't constraint to the 'td' in IE6/7.
